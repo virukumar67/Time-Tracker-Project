@@ -14,14 +14,25 @@ import styles from './styles';
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [checkValidEmail, setCheckValidEmai] = useState(false);
 
   const Validation = () => {
     if (!email || email.trim() == '') {
       ToastAndroid.show('Enter E-mail', ToastAndroid.SHORT);
     } else if (!password || password.trim() == '') {
       ToastAndroid.show('Enter Password', ToastAndroid.SHORT);
+    } else if (password && password.trim().length < 6) {
+      ToastAndroid.show(
+        'Password can not less than 6 character',
+        ToastAndroid.SHORT,
+      );
+    } else if (password && password.trim().length > 18) {
+      ToastAndroid.show(
+        'Password can not more than 18 character',
+        ToastAndroid.SHORT,
+      );
     } else {
-      alert('Login Successfully');
+      navigation.navigate('TabRouts');
     }
   };
   return (
@@ -53,8 +64,10 @@ const Login = ({navigation}) => {
             placeholder="Enter password"
             placeholderTextColor="gray"
             value={password}
+            secureTextEntry={true}
             onChangeText={text => setPassword(text)}
             style={styles.input}
+            maxLength={18}
           />
         </View>
         <TouchableOpacity style={styles.loginBtn} onPress={() => Validation()}>

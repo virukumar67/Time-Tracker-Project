@@ -18,16 +18,28 @@ const Login = ({navigation}) => {
   const [password, setPassword] = useState('');
 
   const Validation = () => {
-    if (!email || email.trim() == '') {
+    if (!firstName || firstName.trim() == '') {
+      ToastAndroid.show('enter first name', ToastAndroid.SHORT);
+    } else if (firstName && firstName.trim().length < 3) {
+      ToastAndroid.show('name character not less than 3', ToastAndroid.SHORT);
+    } else if (firstName && firstName.trim().length > 15) {
+      ToastAndroid.show('name character not more than 15', ToastAndroid.SHORT);
+    } else if (!lastName || lastName.trim() == '') {
+      ToastAndroid.show('enter last name', ToastAndroid.SHORT);
+    } else if (lastName && lastName.trim().length < 3) {
+      ToastAndroid.show('name character not less than 3', ToastAndroid.SHORT);
+    } else if (lastName && lastName.trim().length > 15) {
+      ToastAndroid.show('name character not more than 15', ToastAndroid.SHORT);
+    } else if (!email || email.trim() == '') {
       ToastAndroid.show('enter email', ToastAndroid.SHORT);
     } else if (!password || password.trim() == '') {
-      ToastAndroid.show('enter password', ToastAndroid.SHORT);
-    } else if (!password || password.trim() == '') {
-      ToastAndroid.show('enter password', ToastAndroid.SHORT);
-    } else if (!password || password.trim() == '') {
-      ToastAndroid.show('enter password', ToastAndroid.SHORT);
+      ToastAndroid.show('Enter Password', ToastAndroid.SHORT);
+    } else if (password && password.trim().length < 6) {
+      ToastAndroid.show('Password can not less than 6 character',ToastAndroid.SHORT,);
+    } else if (password && password.trim().length > 18) {
+      ToastAndroid.show('Password can not more than 18 character',ToastAndroid.SHORT,);
     } else {
-      alert('SignUp Successfully');
+      navigation.navigate('TabRouts');
     }
   };
   return (
@@ -73,6 +85,7 @@ const Login = ({navigation}) => {
             placeholder="enter password"
             placeholderTextColor="gray"
             value={password}
+            secureTextEntry={true}
             onChangeText={text => setPassword(text)}
             style={styles.input}
           />
