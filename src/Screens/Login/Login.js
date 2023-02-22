@@ -14,9 +14,11 @@ import styles from './styles';
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [checkValidEmail, setCheckValidEmai] = useState(false);
+  const [checkValidEmail, setCheckValidEmail] = useState(false);
 
   const Validation = () => {
+    // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
     if (!email || email.trim() == '') {
       ToastAndroid.show('Enter E-mail', ToastAndroid.SHORT);
     } else if (!password || password.trim() == '') {
@@ -26,15 +28,35 @@ const Login = ({navigation}) => {
         'Password can not less than 6 character',
         ToastAndroid.SHORT,
       );
-    } else if (password && password.trim().length > 18) {
-      ToastAndroid.show(
-        'Password can not more than 18 character',
-        ToastAndroid.SHORT,
-      );
     } else {
       navigation.navigate('TabRouts');
     }
   };
+
+  //  validate = (text) => {
+  //     console.log(text);
+  //     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+  //     if (reg.test(text) === false) {
+  //       console.log("Email is Not Correct");
+  //       this.setState({ email: text })
+  //       return false;
+  //     }
+  //     else {
+  //       this.setState({ email: text })
+  //       console.log("Email is Correct");
+  //     }
+  //   }
+
+  const emailChange = text => {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    setEmail(text);
+    if (reg.test(email) === false) {
+      setCheckValidEmail(true);
+    } else {
+      setCheckValidEmail(false);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAwareScrollView>
@@ -54,9 +76,14 @@ const Login = ({navigation}) => {
             keyboardType="email-address"
             autoCapitalize="none"
             value={email}
-            onChangeText={text => setEmail(text)}
+            onChangeText={text => emailChange(text)}
             style={styles.input}
           />
+          <View>
+            <Text style={{color: 'red', textAlign: 'right'}}>
+              {checkValidEmail ? 'Wrong -email format' : ''}
+            </Text>
+          </View>
           <TextInput
             mode="outlined"
             label="Password"
