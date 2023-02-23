@@ -85,11 +85,12 @@ const Routes = () => {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Login"
+          initialRouteName="Expenses"
           screenOptions={{
             headerShown: false,
           }}>
-          <Stack.Screen name="TabRouts" component={TabRouts} />
+            <Stack.Screen name="Expenses" component={Expenses} />
+          {/* <Stack.Screen name="TabRouts" component={TabRouts} /> */}
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUp} />
         </Stack.Navigator>
