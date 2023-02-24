@@ -1,13 +1,12 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import styles from './styles';
+import { View, Text } from 'react-native'
+import React from 'react'
 
 const Timeoff = () => {
   return (
-    <View style={styles.container}>
+    <View>
       <Text>Timeoff</Text>
     </View>
   )
 }
 
-export default Timeoff;
+export default Timeoff

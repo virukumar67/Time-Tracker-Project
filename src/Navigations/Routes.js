@@ -6,10 +6,12 @@ import Login from '../Screens/Login/Login';
 import SignUp from '../Screens/SignUp/SignUp';
 import Splash from '../Screens/Splash/Splash';
 import TimeSheets from '../Screens/TimeSheets/TimeSheets';
-import Expenses from '../Screens/Expenses/Expenses';
+import Schedule from '../Screens/Schedule/Schedule';
 import Timeoff from '../Screens/Timeoff/Timeoff';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
+import Dashboard from '../Screens/Dashboard/Dashboard';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +24,21 @@ const TabRouts = () => {
         tabBarActiveTintColor: 'red',
         tabBarInactiveTintColor: 'gray',
       }}>
+        <Tabs.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={{
+          tabBarIcon: ({focused}) => {
+            return (
+              <MaterialCommunityIcons
+                name="view-dashboard-variant-outline"
+                size={25}
+                color={focused ? 'red' : 'gray'}
+              />
+            );
+          },
+        }}
+      />
       <Tabs.Screen
         name="TimeSheets"
         component={TimeSheets}
@@ -38,8 +55,8 @@ const TabRouts = () => {
         }}
       />
       <Tabs.Screen
-        name="Expenses"
-        component={Expenses}
+        name="Schedule"
+        component={Schedule}
         options={{
           tabBarIcon: ({focused}) => {
             return (
@@ -53,13 +70,13 @@ const TabRouts = () => {
         }}
       />
       <Tabs.Screen
-        name="Time Off"
+        name="More"
         component={Timeoff}
         options={{
           tabBarIcon: ({focused}) => {
             return (
-              <MaterialCommunityIcons
-                name="altimeter"
+              <Entypo
+                name="dots-three-horizontal"
                 size={20}
                 color={focused ? 'red' : 'gray'}
               />
